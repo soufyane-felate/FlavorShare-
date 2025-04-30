@@ -1,0 +1,68 @@
+<div class="header-main">
+  <h1 class="site-title">List of recipes</h1>
+  <p class="site-description">Here you can find the best easy recipes.</p>
+  <button class="add-post-btn">
+    <a routerLink="/new">Ajouter Poste</a>
+  </button>
+  <br>
+  <input type="text" class="form-group" placeholder="search by title..." />
+</div>
+<div class="container">
+  <div class="header-wrapper">
+    <div class="header-category">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+      <div class="btn-group-horizontal" id="btn-c">
+        <button class="card" (click)="selectCategory='Beverages'">
+          <i class="fas fa-mug-hot"></i> Beverages
+        </button>
+        <button class="card" (click)="selectCategory='Desserts'">
+          <i class="fas fa-ice-cream"></i> Desserts
+        </button>
+        <button class="card" (click)="selectCategory='Vegetarian'">
+          <i class="fas fa-carrot"></i> Vegetarian
+        </button>
+        <button class="card" (click)="selectCategory=''">
+          <i class="fas fa-utensils"></i> All
+        </button>
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+  <main class="articles-container">
+
+    <article class="article-card" *ngFor="let post of posts">
+      <ng-container
+        *ngIf="(!selectCategory || post.categorie === selectCategory) && (!searchTitle || post.title.toLowerCase().includes(searchTitle.toLowerCase()))">
+        <div class="article-image"
+          [style.background]="post.image ? 'url(' + post.image + ')' : 'linear-gradient(135deg, #2563eb, #1e40af)'">
+          {{ post.title }}
+        </div>
+        <div class="article-content">
+          <h2 class="article-title">{{post.title}}</h2>
+          <div class="article-meta">
+            <span class="article-author">Hamed lkaget</span>
+            <span>•</span>
+            <span class="date">11</span>
+          </div>
+          <p class="article-excerpt">
+            {{ post.description }} </p>
+          <a class="read-link">
+            Lire l'article
+          </a>
+
+
+        </div>
+      </ng-container>
+    </article>
+
+
+
+
+
+  </main>
+</div>

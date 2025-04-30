@@ -1,0 +1,12 @@
+{
+  "post":[
+   {
+    "title":"test1",
+    "description":"description",
+    "satars":5,
+    "image":"https://i.pinimg.com/736x/59/ad/7d/59ad7dfa8c1a33019081315e262f20b5.jpg",
+    "price":100,
+    "categorie":"Desserts"
+   }
+  ]
+}
