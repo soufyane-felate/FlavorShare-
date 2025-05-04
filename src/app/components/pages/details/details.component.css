@@ -1,0 +1,59 @@
+.post-details-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .post-header img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+  
+  .post-header h1 {
+    font-size: 2rem;
+    margin: 10px 0;
+  }
+  
+  .post-meta {
+    color: gray;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  
+  .post-extra-info p {
+    margin: 5px 0;
+  }
+  
+  .post-extra-info span {
+    color: gold;
+    font-size: 1.2rem;
+  }
+  
+  .comment {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .comment input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+  }
+  
+  .comment button {
+    padding: 10px 20px;
+  }
+  
+  .display_comment {
+    margin-top: 30px;
+  }
+  
+  .comment-item {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  

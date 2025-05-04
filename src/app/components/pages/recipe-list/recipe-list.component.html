@@ -1,68 +1,61 @@
-<div class="header-main">
-  <h1 class="site-title">List of recipes</h1>
-  <p class="site-description">Here you can find the best easy recipes.</p>
-  <button class="add-post-btn">
-    <a routerLink="/new">Ajouter Poste</a>
-  </button>
-  <br>
-  <input type="text" class="form-group" placeholder="search by title..." />
+<div class="header-main text-center py-4 text-white bg-gradient-custom">
+  <h1 class="site-title mb-1">Blog Minimal</h1>
+  <p class="site-description">Des articles simples sur les technologies modernes</p>
+  <a routerLink="/new" class="btn btn-outline-light animate-btn mb-3">Ajouter Poste</a>
+  <input
+    type="text"
+    class="form-control w-50 mx-auto shadow-sm"
+    [(ngModel)]="searchTitle"
+    placeholder="Rechercher par titre..."
+  />
 </div>
-<div class="container">
-  <div class="header-wrapper">
-    <div class="header-category">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-      <div class="btn-group-horizontal" id="btn-c">
-        <button class="card" (click)="selectCategory='Beverages'">
-          <i class="fas fa-mug-hot"></i> Beverages
-        </button>
-        <button class="card" (click)="selectCategory='Desserts'">
-          <i class="fas fa-ice-cream"></i> Desserts
-        </button>
-        <button class="card" (click)="selectCategory='Vegetarian'">
-          <i class="fas fa-carrot"></i> Vegetarian
-        </button>
-        <button class="card" (click)="selectCategory=''">
-          <i class="fas fa-utensils"></i> All
-        </button>
-      </div>
-
-
-
-    </div>
+<div class="container my-4">
+  <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+    <button class="btn btn-outline-primary animate-btn" (click)="selectCategory='vegitable'">
+      <i class="fas fa-leaf"></i> Légumes
+    </button>
+    <button class="btn btn-outline-success animate-btn" (click)="selectCategory='fruit'">
+      <i class="fas fa-apple-alt"></i> Fruits
+    </button>
+    <button class="btn btn-outline-warning animate-btn" (click)="selectCategory='dessert'">
+      <i class="fas fa-ice-cream"></i> Desserts
+    </button>
+    <button class="btn btn-outline-danger animate-btn" (click)="selectCategory='meat'">
+      <i class="fas fa-drumstick-bite"></i> Viande
+    </button>
+    <button class="btn btn-outline-info animate-btn" (click)="selectCategory='vegan'">
+      <i class="fas fa-seedling"></i> Vegan
+    </button>
+    <button class="btn btn-outline-dark animate-btn" (click)="selectCategory='drink'">
+      <i class="fas fa-coffee"></i> Boissons
+    </button>
+    <button class="btn btn-outline-secondary animate-btn" (click)="selectCategory=''">
+      <i class="fas fa-globe"></i> Tous
+    </button>
   </div>
 
-
-  <main class="articles-container">
-
-    <article class="article-card" *ngFor="let post of posts">
-      <ng-container
-        *ngIf="(!selectCategory || post.categorie === selectCategory) && (!searchTitle || post.title.toLowerCase().includes(searchTitle.toLowerCase()))">
-        <div class="article-image"
-          [style.background]="post.image ? 'url(' + post.image + ')' : 'linear-gradient(135deg, #2563eb, #1e40af)'">
-          {{ post.title }}
-        </div>
-        <div class="article-content">
-          <h2 class="article-title">{{post.title}}</h2>
-          <div class="article-meta">
-            <span class="article-author">Hamed lkaget</span>
-            <span>•</span>
-            <span class="date">11</span>
+  <div class="row g-4">
+    <ng-container *ngFor="let post of posts">
+      <ng-container *ngIf="(!selectCategory || post.categorie === selectCategory) && (!searchTitle || post.title.toLowerCase().includes(searchTitle.toLowerCase()))">
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm article-card animate-fade">
+            <div class="article-image"
+              [style.backgroundImage]="'url(' + post.image + ')'">
+              <div class="overlay-title">{{ post.title }}</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <div class="text-muted small mb-2">
+                <span class="article-author">Hamed lkaget</span> &bull;
+                <span class="date">{{ post.date }}</span>
+              </div>
+              <p class="card-text">{{ post.description }}</p>
+              <a [routerLink]="['/details', post.id]" class="btn btn-sm btn-primary">Lire l'article</a>
+            </div>
           </div>
-          <p class="article-excerpt">
-            {{ post.description }} </p>
-          <a class="read-link">
-            Lire l'article
-          </a>
-
-
         </div>
       </ng-container>
-    </article>
-
-
-
-
-
-  </main>
+    </ng-container>
+  </div>
 </div>

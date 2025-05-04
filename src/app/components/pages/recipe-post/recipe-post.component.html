@@ -1,1 +1,29 @@
-<p>recipe-post works!</p>
+
+<form (ngSubmit)="onSubmit()" >
+    <div class="form-group">
+      <label for="postTitle">Titre du post</label>
+      <input type="text" id="postTitle" name="title" [(ngModel)]="post.title" placeholder="Entrez le titre" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="postImage">Image</label>
+      <input type="text" id="postImage" name="image" [(ngModel)]="post.image" placeholder="URL de l'image">
+    </div>
+    
+    <div class="form-group">
+      <label for="postDescription">Description</label>
+      <textarea id="postDescription" name="description" [(ngModel)]="post.description" placeholder="Contenu du post..."
+      required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="postCategory">category</label>
+      <input type="text" id="category" name="category" [(ngModel)]="post.categorie" placeholder="Entrez le category" required>
+    </div>
+    <div class="form-group">
+      <label for="postCategory">price</label>
+      <input type="number" id="category" name="category" [(ngModel)]="post.price" placeholder="Entrez le price" required>
+    </div>
+    
+    <button type="submit">Publier</button>
+  </form>
+  

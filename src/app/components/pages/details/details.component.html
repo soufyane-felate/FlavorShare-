@@ -1,1 +1,42 @@
-<p>details works!</p>
+<div *ngIf="post" class="post-details-container">
+    <div class="post-header">
+      <img [src]="post.image" alt="{{ post.title }}" *ngIf="post.image">
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.description }}</p>
+    </div>
+  
+    <div class="post-content">
+      <div class="post-meta">
+        <span class="post-author">Auteur: Hamed lkaget</span>
+        <span class="post-date">Publié le: {{ post.date }}</span>
+      </div>
+  
+      <div class="post-extra-info">
+        <p><strong>Catégorie:</strong> {{ post.categorie }}</p>
+        <p><strong>Prix:</strong> {{ post.price }} DH</p>
+        <p><strong>Évaluation:</strong>
+          <span *ngIf="post.satars > 0">
+            <span *ngFor="let star of [].constructor(post.satars)">★</span>
+          </span>
+          <span *ngIf="post.satars === 0">Pas encore noté</span>
+        </p>
+      </div>
+    </div>
+  
+    <form (ngSubmit)="onSubmit()">
+      <div class="comment">
+        <input type="text" [(ngModel)]="comment.articlComment" name="comment" id="comment" placeholder="Écrivez votre commentaire..." required>
+        <button type="submit">Partager</button>
+      </div>
+    </form>
+  
+    <div class="display_comment">
+      <h2>Commentaires:</h2>
+      <div *ngFor="let c of comments" class="comment-item">
+        <p>{{ c.articlComment }}</p>
+        <small>{{ c.date | date: 'short' }}</small>
+        <hr>
+      </div>
+    </div>
+  </div>
+  

@@ -10,6 +10,7 @@ export const routes: Routes = [
   { path: 'posts', component: RecipePostComponent},
   { path: 'list', component: RecipeListComponent},
   { path: 'login', component: LoginComponent },
+  { path: 'new', component: RecipePostComponent },
   {
     path: 'details/:id',
     loadComponent: () =>

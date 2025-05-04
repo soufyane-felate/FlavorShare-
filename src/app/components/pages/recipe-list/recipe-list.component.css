@@ -1,221 +1,45 @@
-:root {
-  --primary: #2563eb;
-  --secondary: #1e40af;
-  --text: #1f2937;
-  --text-light: #6b7280;
-  --bg: #f9fafb;
-  --card-bg: #ffffff;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6;
-  color: var(--text);
-  background-color: var(--bg);
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-}
-
-.btn i {
-  margin-right: 8px;
-}
-
-#btn-c {
-  display: flex;
-  justify-content: space-around;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.header-main {
-  text-align: center;
-  align-items: center;
-}
-
-.site-title {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--primary);
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.05em;
-}
-
-.site-description {
-  color: var(--text-light);
-  max-width: 600px;
-}
-
-.add-post-btn {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.add-post-btn:hover {
-  background: var(--secondary);
-}
-
-
-.site-description {
-  color: var(--text-light);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.articles-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.article-card {
-  background: var(--card-bg);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
-}
-
-.article-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+.bg-gradient-custom {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
 }
 
 .article-image {
   height: 180px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  position: relative;
+}
+
+.overlay-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
   color: white;
-  font-weight: 700;
-  font-size: 1.8rem;
-}
-
-.article-content {
-  padding: 1.5rem;
-}
-
-.article-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0 0 0.75rem 0;
-  color: var(--text);
-}
-
-.article-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-bottom: 1rem;
-}
-
-.article-author {
-  color: var(--primary);
-  font-weight: 500;
-}
-
-.article-excerpt {
-  color: var(--text-light);
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.read-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--primary);
-  font-weight: 500;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.read-link:hover {
-  text-decoration: underline;
-}
-
-.read-link svg {
-  margin-left: 0.3rem;
-  transition: transform 0.2s ease;
-}
-
-.read-link:hover svg {
-  transform: translateX(2px);
-}
-
-.tags {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  flex-wrap: wrap;
-}
-
-.tag {
-  background: #e0e7ff;
-  color: var(--primary);
-  padding: 0.25rem 0.75rem;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.card {
-  margin: 5px;
-  align-items: center;
-}
-
-
-p {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-
-.container {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  padding: 20px;
-}
-
-.left-column {
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.category-card {
-  background-color: #f3f4f6;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
+  padding: 0.5rem 1rem;
   font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 1.1rem;
+  transition: background 0.3s;
 }
 
-.category-card:hover {
-  background-color: #e5e7eb;
+.article-card:hover .overlay-title {
+  background: rgba(0, 0, 0, 0.8);
 }
 
-.right-column {
-  width: 75%;
+.animate-btn {
+  transition: transform 0.3s ease;
+}
+
+.animate-btn:hover {
+  transform: scale(1.05);
+}
+
+.animate-fade {
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

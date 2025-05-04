@@ -1,12 +1,68 @@
 {
-  "post":[
-   {
-    "title":"test1",
-    "description":"description",
-    "satars":5,
-    "image":"https://i.pinimg.com/736x/59/ad/7d/59ad7dfa8c1a33019081315e262f20b5.jpg",
-    "price":100,
-    "categorie":"Desserts"
-   }
+  "post": [
+    {
+      "id": "04bf",
+      "title": "test1",
+      "description": "description",
+      "satars": 3,
+      "image": "https://i.pinimg.com/736x/59/ad/7d/59ad7dfa8c1a33019081315e262f20b5.jpg",
+      "price": 100,
+      "categorie": "Desserts",
+      "date": "2024-04-30T10:00:00Z"
+    },
+    {
+      "id": "3145",
+      "title": "tacos",
+      "image": "",
+      "description": "kkndk",
+      "satars": 5,
+      "date": "2025-05-01T19:57:38.807Z",
+      "price": 150,
+      "categorie": "viend"
+    }
+  ],
+  "comment": [
+    {
+      "id": "1",
+      "postId": "04bf",
+      "articlComment": "Super bon!",
+      "date": "2024-05-01T10:00:00Z"
+    },
+    {
+      "id": "3191",
+      "date": "2025-05-01T19:42:09.753Z",
+      "articlComment": "a",
+      "postId": "04bf"
+    },
+    {
+      "id": "08a0",
+      "date": "2025-05-01T19:53:50.625Z",
+      "articlComment": "wooooow",
+      "postId": "04bf"
+    },
+    {
+      "id": "6000",
+      "date": "2025-05-01T19:53:53.355Z",
+      "articlComment": "",
+      "postId": "04bf"
+    },
+    {
+      "id": "dd1d",
+      "date": "2025-05-03T12:53:40.374Z",
+      "articlComment": "",
+      "postId": "04bf"
+    },
+    {
+      "id": "d411",
+      "date": "2025-05-03T12:55:07.093Z",
+      "articlComment": "★★",
+      "postId": "04bf"
+    },
+    {
+      "id": "3371",
+      "date": "2025-05-03T12:55:20.696Z",
+      "articlComment": "★★★★",
+      "postId": "04bf"
+    }
   ]
 }
