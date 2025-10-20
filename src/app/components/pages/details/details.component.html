@@ -1,42 +1,159 @@
-<div *ngIf="post" class="post-details-container">
-    <div class="post-header">
-      <img [src]="post.image" alt="{{ post.title }}" *ngIf="post.image">
-      <h1>{{ post.title }}</h1>
-      <p>{{ post.description }}</p>
+<div *ngIf="loading" class="post-details-container container py-5 text-center">
+  <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
-  
-    <div class="post-content">
-      <div class="post-meta">
-        <span class="post-author">Auteur: Hamed lkaget</span>
-        <span class="post-date">Publié le: {{ post.date }}</span>
-      </div>
-  
-      <div class="post-extra-info">
-        <p><strong>Catégorie:</strong> {{ post.categorie }}</p>
-        <p><strong>Prix:</strong> {{ post.price }} DH</p>
-        <p><strong>Évaluation:</strong>
-          <span *ngIf="post.satars > 0">
-            <span *ngFor="let star of [].constructor(post.satars)">★</span>
-          </span>
-          <span *ngIf="post.satars === 0">Pas encore noté</span>
-        </p>
+  </div>
+</div>
+
+<div *ngIf="error" class="post-details-container container py-5">
+  <div class="alert alert-danger text-center" role="alert">
+    <h4 class="alert-heading">Error Loading Recipe</h4>
+    <p>{{ error }}</p>
+    <hr>
+    <button class="btn btn-primary" (click)="ngOnInit()">Try Again</button>
+  </div>
+</div>
+
+<div *ngIf="post && !loading && !error" class="post-details-container container py-5" @fadeInUpStagger>
+  <div class="row">
+    <div class="col-lg-8">
+      <article class="post-article bg-white rounded shadow-sm p-4 mb-4">
+        <div class="post-header mb-4">
+          <img [src]="post.image" alt="{{ post.title }}" class="img-fluid rounded mb-4 w-100" *ngIf="post.image" style="max-height: 400px; object-fit: cover;">
+          <h1 class="mb-3">{{ post.title }}</h1>
+          <p class="lead text-muted">{{ post.description }}</p>
+        </div>
+      
+        <div class="post-content">
+          <div class="post-meta d-flex flex-wrap align-items-center mb-4 pb-3 border-bottom">
+            <div class="me-4 mb-2 mb-md-0">
+              <i class="fas fa-user text-primary"></i>
+              <span class="post-author ms-2">Hamed lkaget</span>
+            </div>
+            <div class="me-4 mb-2 mb-md-0">
+              <i class="fas fa-calendar text-primary"></i>
+              <span class="post-date ms-2">{{ post.date | date: 'mediumDate' }}</span>
+            </div>
+            <div class="mb-2 mb-md-0">
+              <i class="fas fa-tag text-primary"></i>
+              <span class="post-category ms-2">{{ post.categorie }}</span>
+            </div>
+          </div>
+      
+          <div class="post-extra-info row">
+            <div class="col-md-6 mb-3">
+              <div class="d-flex align-items-center">
+                <span class="me-3 fw-bold">Prix:</span>
+                <span class="price-tag bg-primary text-white px-3 py-1 rounded">{{ post.price }} DH</span>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="d-flex align-items-center">
+                <span class="me-3 fw-bold">Évaluation:</span>
+                <div>
+                  <span *ngIf="post.satars > 0" class="star-rating">
+                    <span *ngFor="let star of [].constructor(post.satars)" class="text-warning">★</span>
+                    <span *ngFor="let star of [].constructor(5 - post.satars)" class="text-muted">☆</span>
+                  </span>
+                  <span *ngIf="post.satars === 0" class="text-muted">Pas encore noté</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      
+      <div class="comments-section bg-white rounded shadow-sm p-4">
+        <h2 class="mb-4">Commentaires ({{ comments.length }})</h2>
+        
+        <form (ngSubmit)="onSubmit()" class="mb-4">
+          <div class="comment-form d-flex flex-column">
+            <div class="form-group mb-3">
+              <label for="comment" class="form-label fw-bold mb-2">Ajouter un commentaire</label>
+              <textarea 
+                [(ngModel)]="comment.articlComment" 
+                name="comment" 
+                id="comment" 
+                placeholder="Écrivez votre commentaire..." 
+                required 
+                class="form-control" 
+                rows="3">
+              </textarea>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary px-4 py-2">Partager</button>
+            </div>
+          </div>
+        </form>
+      
+        <div class="comments-list">
+          <div *ngFor="let c of comments" class="comment-item border-bottom pb-3 mb-3">
+            <div class="d-flex align-items-start">
+              <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-1">Utilisateur</h6>
+                  <small class="text-muted">{{ c.date | date: 'short' }}</small>
+                </div>
+                <p class="mb-0">{{ c.articlComment }}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="comments.length === 0" class="text-center py-4 text-muted">
+            <i class="fas fa-comment-alt fa-2x mb-3"></i>
+            <p class="mb-0">Aucun commentaire pour le moment. Soyez le premier à commenter !</p>
+          </div>
+        </div>
       </div>
     </div>
-  
-    <form (ngSubmit)="onSubmit()">
-      <div class="comment">
-        <input type="text" [(ngModel)]="comment.articlComment" name="comment" id="comment" placeholder="Écrivez votre commentaire..." required>
-        <button type="submit">Partager</button>
-      </div>
-    </form>
-  
-    <div class="display_comment">
-      <h2>Commentaires:</h2>
-      <div *ngFor="let c of comments" class="comment-item">
-        <p>{{ c.articlComment }}</p>
-        <small>{{ c.date | date: 'short' }}</small>
-        <hr>
+    
+    <div class="col-lg-4">
+      <div class="sidebar sticky-top">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Informations sur la recette</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2">
+                <i class="fas fa-tag text-primary me-2"></i>
+                <strong>Catégorie:</strong> {{ post.categorie }}
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-money-bill-wave text-primary me-2"></i>
+                <strong>Prix:</strong> {{ post.price }} DH
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-calendar text-primary me-2"></i>
+                <strong>Date:</strong> {{ post.date | date: 'mediumDate' }}
+              </li>
+              <li>
+                <i class="fas fa-star text-primary me-2"></i>
+                <strong>Évaluation:</strong> 
+                <span *ngIf="post.satars > 0" class="star-rating">
+                  <span *ngFor="let star of [].constructor(post.satars)" class="text-warning">★</span>
+                  <span *ngFor="let star of [].constructor(5 - post.satars)" class="text-muted">☆</span>
+                </span>
+                <span *ngIf="post.satars === 0" class="text-muted">Pas encore noté</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card shadow-sm">
+          <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Recettes similaires</h5>
+          </div>
+          <div class="card-body">
+            <p class="text-muted mb-0">Contenu à ajouter dans une mise à jour future.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
   

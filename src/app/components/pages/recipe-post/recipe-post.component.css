@@ -1,64 +1,101 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f5f5f5;
+.card {
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.card-header {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.form-label {
+  color: var(--dark-color);
+  font-weight: 600;
+}
+
+.form-control, .form-select {
+  border-radius: var(--border-radius);
+  border: 1px solid #ced4da;
+  padding: 12px 15px;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+}
+
+.form-control-lg {
+  padding: 15px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  transition: var(--transition);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #e05a2a;
+  border-color: #e05a2a;
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.btn-primary:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 600;
+  border-radius: 50px;
+  transition: var(--transition);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.form-text {
+  font-size: 0.85rem;
+}
+
+.text-danger {
+  color: var(--danger-color) !important;
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1.5rem;
   }
   
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="file"],
-  textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  textarea {
-    height: 100px;
-    resize: vertical;
-  }
-  
-  button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background: #4b8bda;
-    color: white;
-    width: 100%;
+  .form-control-lg {
     padding: 12px;
-    margin-top: 10px;
   }
   
-  button:hover {
-    background: #2e21e7;
+  .btn {
+    padding: 0.75rem 1.25rem;
   }
-  
-  .file-info {
-    font-size: 0.9em;
-    color: #666;
-    margin-top: 5px;
-  }
+}
   
   

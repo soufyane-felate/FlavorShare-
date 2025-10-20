@@ -1,60 +1,70 @@
 import { Component } from '@angular/core';
 import { ServiceService } from '../../services/service.service';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule, NgFor, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { trigger, transition, style, animate, stagger, query } from '@angular/animations';
 import { filter } from 'rxjs';
 import { log } from 'node:console';
 
 @Component({
   selector: 'app-recipe-list',
   standalone: true,
-  imports: [CommonModule,RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, DatePipe],
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.css',
+  animations: [
+    trigger('fadeInUpStagger', [
+      transition(':enter', [
+        query(':enter', [
+          style({ opacity: 0, transform: 'translateY(30px)' }),
+          stagger('100ms', [
+            animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+          ])
+        ], { optional: true })
+      ])
+    ]),
+    trigger('fadeInHeader', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate('600ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class RecipeListComponent {
   constructor(private service:ServiceService){}
   selectCategory='';
   searchTitle='';
   posts:any[]=[];
-  num=1;
+  filteredPosts:any[]=[];
 
   ngOnInit():void{
     this.service.getPosts().subscribe((data)=>{
       this.posts=data;
-      console.log((this.posts = data));
-
-
-
-   const filterByTitle=this.posts.filter(post=>post.title.toLowerCase().includes(this.searchTitle.toLowerCase()));
-      filterByTitle.forEach(post => console.log("filter title : "+post.title));
-      
-      
-   const mapByTitle=this.posts.map(post=>post.title.toLowerCase().includes(this.searchTitle.toLowerCase()));
-      filterByTitle.forEach(post =>  console.log("map title : "+post.title)); 
-
-  
-   const hghitStars=this.posts.reduce((d1,d2)=>{
-    return(d1.stars||0)>(d2.stars||0)?d1:d2;
-  });
-  console.log("the largest stars :" +hghitStars);
-
-
-  const highestRatedPost = this.posts.reduce((prev, current) => {
-    return (prev.satars || 0) > (current.satars || 0) ? prev : current;
-  });
-  
-  console.log("🌟 Highest Rated Post:", highestRatedPost);
-  
-
-  });
-
-
-  
-    
-
-    
+      this.filteredPosts = [...data];
+    });
   }
 
+  // Filter posts by category
+  filterByCategory(category: string) {
+    this.selectCategory = category;
+    this.applyFilters();
+  }
+
+  // Apply all filters
+  applyFilters() {
+    this.filteredPosts = this.posts.filter(post => {
+      const matchesCategory = !this.selectCategory || post.categorie.toLowerCase() === this.selectCategory.toLowerCase();
+      const matchesSearch = !this.searchTitle || post.title.toLowerCase().includes(this.searchTitle.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }
+
+  // Reset filters
+  resetFilters() {
+    this.selectCategory = '';
+    this.searchTitle = '';
+    this.filteredPosts = [...this.posts];
+  }
 }

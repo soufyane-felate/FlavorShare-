@@ -1,23 +1,106 @@
-
-.center-nav {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+.bg-gradient-custom {
+  background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
 }
 
 .navbar-brand {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.5rem;
+  transition: var(--transition);
 }
 
-.custom-brand::first-letter {
-  color: red;
-  font-weight: bold;
-  font-size: 30px;
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.brand-text {
+  letter-spacing: 1px;
+}
+
+.nav-link-hover {
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-link-hover:hover, .nav-link-hover.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: var(--transition);
+  transform: translateX(-50%);
+}
+
+.nav-link-hover:hover::after, .nav-link-hover.active::after {
+  width: 70%;
+}
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+  padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.btn-outline-light {
+  border-width: 2px;
+  font-weight: 600;
+}
+
+.btn-outline-light:hover {
+  background-color: white;
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: #e05a2a;
+  border-color: #e05a2a;
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-hover);
 }
 
 @media (max-width: 991.98px) {
-  .center-nav {
-    position: static;
-    transform: none;
+  .navbar-nav {
+    background-color: rgba(38, 70, 83, 0.9);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .nav-item {
+    margin: 0.25rem 0;
+  }
+  
+  .nav-link-hover {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
   }
 }

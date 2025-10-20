@@ -1,14 +1,53 @@
 .bg-gradient-custom {
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+  background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-input {
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
 }
 
 .article-image {
-  height: 180px;
+  height: 200px;
   background-size: cover;
   background-position: center;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
   position: relative;
+  overflow: hidden;
+}
+
+.article-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  transition: var(--transition);
+}
+
+.article-card:hover .article-image::before {
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
 }
 
 .overlay-title {
@@ -17,29 +56,129 @@
   width: 100%;
   background: rgba(0,0,0,0.6);
   color: white;
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: background 0.3s;
+  padding: 1rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: var(--transition);
 }
 
 .article-card:hover .overlay-title {
   background: rgba(0, 0, 0, 0.8);
+  padding-left: 1.5rem;
+}
+
+.card-title {
+  color: var(--dark-color);
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.article-author {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.date {
+  color: #6c757d;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background-color: #e05a2a;
+  border-color: #e05a2a;
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.btn-outline-primary, .btn-outline-success, .btn-outline-warning, 
+.btn-outline-danger, .btn-outline-info, .btn-outline-dark, .btn-outline-secondary {
+  border-radius: 50px;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  transition: var(--transition);
+  border-width: 2px;
+}
+
+.btn-outline-primary:hover, .btn-outline-success:hover, .btn-outline-warning:hover, 
+.btn-outline-danger:hover, .btn-outline-info:hover, .btn-outline-dark:hover, .btn-outline-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-outline-warning:hover {
+  background-color: var(--warning-color);
+  border-color: var(--warning-color);
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.btn-outline-info:hover {
+  background-color: var(--info-color);
+  border-color: var(--info-color);
 }
 
 .animate-btn {
-  transition: transform 0.3s ease;
+  transition: var(--transition);
 }
 
 .animate-btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-hover);
 }
 
 .animate-fade {
-  animation: fadeIn 0.8s ease-in;
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.star-rating {
+  color: var(--warning-color);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .header-main {
+    padding: 2rem 1rem;
+  }
+  
+  .site-title {
+    font-size: 1.75rem;
+  }
+  
+  .search-container {
+    max-width: 100%;
+  }
+  
+  .btn-outline-primary, .btn-outline-success, .btn-outline-warning, 
+  .btn-outline-danger, .btn-outline-info, .btn-outline-dark, .btn-outline-secondary {
+    margin: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
 }

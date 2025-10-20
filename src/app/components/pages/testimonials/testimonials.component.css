@@ -1,0 +1,138 @@
+.testimonials-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+  color: white;
+  padding: 4rem 0;
+  margin-bottom: 3rem;
+}
+
+.testimonials-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: var(--transition);
+  border: none;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.testimonial-card:before {
+  content: "\"";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 5rem;
+  color: rgba(255, 107, 53, 0.1);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.testimonial-content {
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.author-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.author-info h5 {
+  margin-bottom: 0.25rem;
+}
+
+.author-info p {
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+.rating {
+  color: var(--warning-color);
+  margin-bottom: 1rem;
+}
+
+.stats-section {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(38, 70, 83, 0.1));
+  border-radius: var(--border-radius);
+  padding: 3rem 2rem;
+  margin: 3rem 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: var(--dark-color);
+  font-weight: 600;
+}
+
+.call-to-action {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  color: white;
+  border-radius: var(--border-radius);
+  padding: 3rem 2rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.btn-light {
+  background-color: white;
+  color: var(--dark-color);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  transition: var(--transition);
+}
+
+.btn-light:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+@media (max-width: 768px) {
+  .testimonials-header {
+    padding: 2rem 0;
+  }
+  
+  .testimonials-header h1 {
+    font-size: 2rem;
+  }
+  
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+}

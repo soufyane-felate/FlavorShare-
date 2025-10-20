@@ -1,29 +1,110 @@
-
-<form (ngSubmit)="onSubmit()" >
-    <div class="form-group">
-      <label for="postTitle">Titre du post</label>
-      <input type="text" id="postTitle" name="title" [(ngModel)]="post.title" placeholder="Entrez le titre" required>
+<div class="container py-5" @fadeInForm>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white py-3">
+          <h2 class="mb-0 text-center">Share Your Recipe</h2>
+        </div>
+        <div class="card-body p-4">
+          <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
+            <div class="row">
+              <div class="col-md-12 mb-4">
+                <div class="form-group">
+                  <label for="postTitle" class="form-label fw-bold mb-2">Recipe Title <span class="text-danger">*</span></label>
+                  <input 
+                    type="text" 
+                    id="postTitle" 
+                    name="title" 
+                    [(ngModel)]="post.title" 
+                    placeholder="Enter your recipe title" 
+                    class="form-control form-control-lg" 
+                    required>
+                  <div class="form-text text-muted mt-1">Give your recipe an attractive and descriptive title</div>
+                </div>
+              </div>
+              
+              <div class="col-md-12 mb-4">
+                <div class="form-group">
+                  <label for="postImage" class="form-label fw-bold mb-2">Recipe Image</label>
+                  <input 
+                    type="text" 
+                    id="postImage" 
+                    name="image" 
+                    [(ngModel)]="post.image" 
+                    placeholder="Enter image URL (e.g., https://example.com/image.jpg)" 
+                    class="form-control form-control-lg">
+                  <div class="form-text text-muted mt-1">Add a beautiful image to make your recipe more appealing</div>
+                </div>
+              </div>
+              
+              <div class="col-md-12 mb-4">
+                <div class="form-group">
+                  <label for="postDescription" class="form-label fw-bold mb-2">Recipe Description <span class="text-danger">*</span></label>
+                  <textarea 
+                    id="postDescription" 
+                    name="description" 
+                    [(ngModel)]="post.description" 
+                    placeholder="Describe your recipe in detail..." 
+                    class="form-control" 
+                    rows="6" 
+                    required></textarea>
+                  <div class="form-text text-muted mt-1">Include ingredients, preparation steps, and any special tips</div>
+                </div>
+              </div>
+              
+              <div class="col-md-6 mb-4">
+                <div class="form-group">
+                  <label for="postCategory" class="form-label fw-bold mb-2">Category <span class="text-danger">*</span></label>
+                  <select 
+                    id="postCategory" 
+                    name="categorie" 
+                    [(ngModel)]="post.categorie" 
+                    class="form-select form-select-lg" 
+                    required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Vegan">Vegan</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Drink">Drink</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Snack">Snack</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="col-md-6 mb-4">
+                <div class="form-group">
+                  <label for="postPrice" class="form-label fw-bold mb-2">Price (DH) <span class="text-danger">*</span></label>
+                  <input 
+                    type="number" 
+                    id="postPrice" 
+                    name="price" 
+                    [(ngModel)]="post.price" 
+                    placeholder="Enter price" 
+                    class="form-control form-control-lg" 
+                    min="0" 
+                    required>
+                </div>
+              </div>
+            </div>
+            
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary btn-lg py-3 px-4" [disabled]="!recipeForm.form.valid">
+                <i class="fas fa-paper-plane me-2"></i>Publish Recipe
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <a routerLink="/posts" class="btn btn-outline-primary">
+          <i class="fas fa-arrow-left me-2"></i>Back to Recipes
+        </a>
+      </div>
     </div>
-    
-    <div class="form-group">
-      <label for="postImage">Image</label>
-      <input type="text" id="postImage" name="image" [(ngModel)]="post.image" placeholder="URL de l'image">
-    </div>
-    
-    <div class="form-group">
-      <label for="postDescription">Description</label>
-      <textarea id="postDescription" name="description" [(ngModel)]="post.description" placeholder="Contenu du post..."
-      required></textarea>
-    </div>
-    <div class="form-group">
-      <label for="postCategory">category</label>
-      <input type="text" id="category" name="category" [(ngModel)]="post.categorie" placeholder="Entrez le category" required>
-    </div>
-    <div class="form-group">
-      <label for="postCategory">price</label>
-      <input type="number" id="category" name="category" [(ngModel)]="post.price" placeholder="Entrez le price" required>
-    </div>
-    
-    <button type="submit">Publier</button>
-  </form>
+  </div>
+</div>
   
